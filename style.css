@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fce4ec; /* Màu hồng nhạt */
+    overflow: hidden; /* Ẩn phần tràn ra của hoa */
+    position: relative;
+}
+
+.container {
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+    z-index: 2; /* Đảm bảo container nằm trên bó hoa */
+}
+
+/* Định dạng và animation cho bó hoa thật sự */
+.animated-bouquet {
+    position: absolute;
+    bottom: -50px; /* Vị trí ban đầu để bó hoa trượt lên */
+    left: -10px;  /* Vị trí */
+    width: 400px; /* Kích thước */
+    height: auto;
+    z-index: 1; /* Nằm dưới nội dung chính */
+    transform-origin: bottom center; /* Điểm neo để xoay */
+
+    /* Kết hợp các animation: */
+    animation: bouquet-appear 1.5s ease-out forwards,
+               sway 8s infinite ease-in-out alternate 1.5s; /* Bắt đầu sway sau khi appear */
+    opacity: 0; /* Ban đầu ẩn để chuẩn bị cho animation xuất hiện */
+}
+
+.greeting-box {
+    margin-bottom: 30px;
+    color: #e91e63;
+    font-family: 'Dancing Script', cursive;
+    position: relative;
+    padding: 20px 0;
+    border-bottom: 2px solid #f8bbd0;
+}
+
+.greeting-box h1, .greeting-box h2, .greeting-box h3 {
+    margin: 0;
+    font-weight: normal;
+}
+
+.greeting-box h1 {
+    font-size: 3.5em;
+    letter-spacing: 2px;
+}
+
+.greeting-box h2 {
+    font-size: 2.8em;
+    margin-top: 10px;
+}
+
+.greeting-box h3 {
+    font-size: 2.2em;
+    margin-top: 5px;
+}
+
+.heart-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e91e63"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center / contain;
+    transform-origin: center;
+}
+
+/* Các bông hoa nhỏ bay lượn ở nền */
+.floating-flowers-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0; /* Đặt ở lớp nền thấp nhất */
+}
+
+/* Định nghĩa cho mỗi bông hoa nhỏ bay ở nền - SỬ DỤNG HÌNH ẢNH */
+.floating-flower {
+    position: absolute;
+    background-image: url('small_rose.png'); /* SỬ DỤNG HÌNH ẢNH CỦA BẠN */
+    background-size: contain; /* Đảm bảo hình ảnh vừa với kích thước div */
+    background-repeat: no-repeat;
+    background-position: center;
+    /* Loại bỏ đổ bóng nếu muốn không viền, hoặc giữ nhẹ nhàng */
+    box-shadow: none; /* Đã loại bỏ đổ bóng */
+    opacity: 0.8; /* Hơi trong suốt để tạo hiệu ứng nền */
+    animation: floatAround 15s infinite ease-in-out; /* Animation riêng cho hoa nền */
+}
+
+
+.message {
+    font-size: 1.3em;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-top: 40px;
+    z-index: 3; /* Đảm bảo tin nhắn nằm trên mọi thứ khác */
+    position: relative;
+}
+
+/* KEYFRAMES CHO CÁC ANIMATION */
+
+/* Animation cho chữ */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Animation cho BÓ HOA CHÍNH (roses.png) */
+@keyframes bouquet-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) rotate(-5deg); /* Bắt đầu từ dưới và hơi xoay */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px) rotate(-5deg); /* Trượt lên vị trí cuối và xoay ban đầu */
+    }
+}
+
+@keyframes sway {
+    0% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+    100% { transform: rotate(-5deg); }
+}
+
+
+/* Animation cho các bông hoa NHỎ ở nền */
+@keyframes floatAround {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); } /* Thêm xoay ngẫu nhiên */
+    25% { transform: translate(20px, -20px) scale(1.05) rotate(15deg); }
+    50% { transform: translate(0, -40px) scale(1) rotate(0deg); }
+    75% { transform: translate(-20px, -20px) scale(0.95) rotate(-15deg); }
+    100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+}
+
+
+.fade-in { animation: fade-in 1s ease-out forwards; }
+.slide-in { animation: slide-in 1.2s ease-out forwards; animation-delay: 0.5s; }
+.scale-in { animation: scale-in 1.4s ease-out forwards; animation-delay: 1s; }
+.beat { animation: beat 1.5s infinite ease-in-out; }
+.fade-in-up { animation: fade-in-up 1.5s ease-out forwards; animation-delay: 2s; }
