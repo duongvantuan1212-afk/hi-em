@@ -26,9 +26,9 @@ body {
 /* Định dạng và animation cho bó hoa thật sự */
 .animated-bouquet {
     position: absolute;
-    bottom: -50px; /* Vị trí ban đầu để bó hoa trượt lên */
+    bottom: +90px; /* Vị trí ban đầu để bó hoa trượt lên */
     left: -10px;  /* Vị trí */
-    width: 400px; /* Kích thước */
+    width: 330px; /* Kích thước */
     height: auto;
     z-index: 1; /* Nằm dưới nội dung chính */
     transform-origin: bottom center; /* Điểm neo để xoay */
@@ -45,7 +45,7 @@ body {
     font-family: 'Dancing Script', cursive;
     position: relative;
     padding: 20px 0;
-    border-bottom: 2px solid #f8bbd0;
+    border-bottom: 2px solid #e91e63;
 }
 
 .greeting-box h1, .greeting-box h2, .greeting-box h3 {
@@ -102,10 +102,10 @@ body {
     animation: floatAround 15s infinite ease-in-out; /* Animation riêng cho hoa nền */
 }
 
-
+/* Cập nhật màu chữ cho phần tin nhắn */
 .message {
     font-size: 1.3em;
-    color: #4a4a4a;
+    color: #e91e63; /* Đã thay đổi màu từ #4a4a4a sang màu hồng #e91e63 */
     line-height: 1.6;
     margin-top: 40px;
     z-index: 3; /* Đảm bảo tin nhắn nằm trên mọi thứ khác */
